@@ -7,7 +7,7 @@ import developerDark from '../assets/images/developer-dark.svg';
 
 const Home = () => {
 	const [activeTheme] = useThemeSwitcher();
-    const resumeLink =  "https://raw.githubusercontent.com/anoopkarnik/react-tailwind-portfolio/main/src/assets/resume.pdf";
+    const resumeLink =  "https://raw.githubusercontent.com/anoopkarnik/react-tailwind-portfolio/main/src/assets/files/resume.pdf";
 
 
 	return (
@@ -63,7 +63,7 @@ const Home = () => {
                     >
                         <a
                             download="AnoopKarnik.pdf"
-                            href="https://raw.githubusercontent.com/anoopkarnik/portfolio/master/src/Assets/resume.pdf"
+                            href={resumeLink}
                             className="font-general-medium flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 text-gray-500 hover:text-white duration-500"
                             aria-label="Download Resume"
                         >
