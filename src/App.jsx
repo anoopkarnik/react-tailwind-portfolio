@@ -6,6 +6,7 @@ import AppFooter from './components/shared/AppFooter';
 import AppHeader from './components/shared/AppHeader';
 
 const Home = lazy(() => import('./pages/Home'));
+const Resume = lazy(() => import('./pages/Resume'));
 
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
               <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/resume" element={<Resume />} />
                 </Routes>
               </Suspense>
               <AppFooter />

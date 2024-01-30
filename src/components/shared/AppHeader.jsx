@@ -34,6 +34,13 @@ const AppHeader = () => {
                         >
                             Home
                         </Link>
+                        <Link
+                            to="/resume"
+                            className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-secondary-dark dark:hover:text-secondary-light  sm:mx-4 mb-2 sm:py-2"
+                            aria-label="Resume"
+                        >
+                            Resume
+                        </Link>
                 </div>
                 <div className="hidden sm:flex justify-between items-center flex-col md:flex-row">
 					<div
