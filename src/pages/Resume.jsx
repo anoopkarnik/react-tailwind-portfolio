@@ -7,9 +7,6 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { zoomPlugin } from '@react-pdf-viewer/zoom';
 import '@react-pdf-viewer/zoom/lib/styles/index.css';
 
-
-
-
 const Resume = () => {
     const resumeLink =  "https://raw.githubusercontent.com/anoopkarnik/react-tailwind-portfolio/main/src/assets/files/resume.pdf";
     const [numPages, setNumPages] = useState(null);

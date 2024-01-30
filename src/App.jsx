@@ -7,6 +7,7 @@ import AppHeader from './components/shared/AppHeader';
 
 const Home = lazy(() => import('./pages/Home'));
 const Resume = lazy(() => import('./pages/Resume'));
+const Project = lazy(() => import('./pages/Project'));
 
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/resume" element={<Resume />} />
+                  <Route path="/project" element={<Project />} />
                 </Routes>
               </Suspense>
               <AppFooter />
