@@ -12,7 +12,7 @@ export const ProjectsProvider = ({children}) => {
 
     useEffect(() => {
         const fetchData = async () => {
-          const response = await fetch('http://0.0.0.0:8110/projects');
+          const response = await fetch('https://www.backend.bsamaritan.com/notion/projects');
           const reader = response.body.getReader();
           let decoder = new TextDecoder();
     
