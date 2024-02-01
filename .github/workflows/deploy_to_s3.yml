@@ -22,3 +22,6 @@ jobs:
         env:
           WEBSITE_NAME: ${{ vars.WEBSITE_NAME }}
         run:  aws s3 sync ./dist/ s3://$WEBSITE_NAME
+      - name: Invalidate CloudFront Distribution
+        run: |
+          aws cloudfront create-invalidation --distribution-id EI6CLSHOA0M60 --paths "/*"

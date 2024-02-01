@@ -12,7 +12,7 @@ export const ProjectsProvider = ({children}) => {
 
     useEffect(() => {
         const fetchData = async () => {
-          const response = await fetch('https://www.backend.bsamaritan.com/notion/projects');
+          const response = await fetch('http://0.0.0.0:8110/projects');
           const reader = response.body.getReader();
           let decoder = new TextDecoder();
     
@@ -34,7 +34,7 @@ export const ProjectsProvider = ({children}) => {
       }, []);
 
     const searchProjectsByTitle = projects.filter((item) => {
-		const result = item.title
+		const result = item.Name
 			.toLowerCase()
 			.includes(searchProject.toLowerCase())
 			? item
@@ -44,9 +44,18 @@ export const ProjectsProvider = ({children}) => {
 		return result;
 	});
 
+    const selectProjectsByMultipleCriteria = (projects, criteria) => {
+        return projects.filter((item) => {
+            return Object.keys(criteria).every((key) => {
+                return item[key] && item[key].includes(criteria[key]);
+            });
+        });
+    };
+
 
     return (
-        <ProjectsContext.Provider value={{ projects, setProjects, searchProject, setSearchProject,searchProjectsByTitle}}>
+        <ProjectsContext.Provider value={{ projects, setProjects, searchProject, setSearchProject, selectProject, 
+        setSelectProject, searchProjectsByTitle, selectProjectsByMultipleCriteria}}>
             {children}
         </ProjectsContext.Provider>
     );
