@@ -14,7 +14,7 @@ export const ProjectsProvider = ({children}) => {
 
     useEffect(() => {
       const fetchData = async () => {
-        const response = await fetch('http://0.0.0.0:8100/notion_stream/projects', {
+        const response = await fetch('https://www.backend.bsamaritan.com/notion_stream/projects', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
