@@ -17,7 +17,8 @@ const ProjectSingle = ({project}) => {
                 <p className="font-general-medium text-lg md:text-xl text-ternary-dark dark:text-ternary-light mb-2">
                     {project.Name}
                 </p>
-                  <img src="https://drive.google.com/uc?export=view&id=1zG-1yQiwItNT257HFA2dh5SEpC27pVf6" alt='not found'/>
+                  <img src={project.Images[0]} alt="Description" />
+
                 <div className="text-lg text-ternary-dark dark:text-ternary-light">
                    {
                       project.LanguagesUsed?project.LanguagesUsed.map(element => element).join(', ') : ''
