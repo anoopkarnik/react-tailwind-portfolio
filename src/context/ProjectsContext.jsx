@@ -11,10 +11,11 @@ export const ProjectsProvider = ({children}) => {
     let seenIds = new Set();
     const [selectedTypes,setSelectedTypes] = useState('');
     const [selectedEmploymentTypes,setSelectedEmploymentTypes] = useState('');
+    const apiGatewayUrl = import.meta.env.VITE_API_GATEWAY_URL;
 
     useEffect(() => {
       const fetchData = async () => {
-        const response = await fetch('https://www.backend.bsamaritan.com/notion_stream/projects', {
+        const response = await fetch(apiGatewayUrl+'notion_stream/projects', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
