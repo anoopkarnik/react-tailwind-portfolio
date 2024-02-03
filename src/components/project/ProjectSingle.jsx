@@ -17,9 +17,25 @@ const ProjectSingle = ({project}) => {
                 <p className="font-general-medium text-lg md:text-xl text-ternary-dark dark:text-ternary-light mb-2">
                     {project.Name}
                 </p>
-                <span className="text-lg text-ternary-dark dark:text-ternary-light">
-                   {project.Type}
-                </span>
+                  <img src="https://drive.google.com/uc?export=view&id=1zG-1yQiwItNT257HFA2dh5SEpC27pVf6" alt='not found'/>
+                <div className="text-lg text-ternary-dark dark:text-ternary-light">
+                   {
+                      project.LanguagesUsed?project.LanguagesUsed.map(element => element).join(', ') : ''
+                   }
+                   {
+                      project.LanguagesUsed.length>0?', ':''
+                   }
+                   {
+                      project.FrameworksUsed?project.FrameworksUsed.map(element => element).join(', '): ''
+                   }
+                   {
+                      project.FrameworksUsed.length>0?', ':''
+                   }
+                   {
+                      project.ToolsUsed?project.ToolsUsed.map(element => element).join(', '): ''
+                   } 
+                   
+                </div>
             </div>
 		</div>
     </motion.div>

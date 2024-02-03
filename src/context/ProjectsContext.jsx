@@ -9,11 +9,12 @@ export const ProjectsProvider = ({children}) => {
     const [searchProject, setSearchProject] = useState('');
 	  const [selectProject, setSelectProject] = useState('');
     let seenIds = new Set();
-
+    const [selectedTypes,setSelectedTypes] = useState('');
+    const [selectedEmploymentTypes,setSelectedEmploymentTypes] = useState('');
 
     useEffect(() => {
       const fetchData = async () => {
-        const response = await fetch('https://www.backend.bsamaritan.com/notion_stream/projects', {
+        const response = await fetch('http://0.0.0.0:8100/notion_stream/projects', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -68,29 +69,26 @@ export const ProjectsProvider = ({children}) => {
     }, []);
   
 
-    const searchProjectsByTitle = projects.filter((item) => {
-		const result = item.Name
-			.toLowerCase()
-			.includes(searchProject.toLowerCase())
-			? item
-			: searchProject === ''
-			? item
-			: '';
-		return result;
-	});
+    const searchProjectsByTitle = (projects,searchTerm) => {
+      return projects.filter((item) => {
+        // Assuming 'Name' is the property you want to search against and it exists on all project objects
+        return item.Name.toLowerCase().includes(searchTerm.toLowerCase());
+      });
+    };
 
     const selectProjectsByMultipleCriteria = (projects, criteria) => {
-        return projects.filter((item) => {
-            return Object.keys(criteria).every((key) => {
-                return item[key] && item[key].includes(criteria[key]);
-            });
+        return projects.filter((project) => {
+            const typeMatch = criteria.Type!="" ? project.Type[0] === criteria.Type : true;
+            const employmentTypeMatch = criteria.EmploymentType!="" ? project.EmploymentType[0] === criteria.EmploymentType : true;
+            return typeMatch && employmentTypeMatch;
         });
     };
 
 
     return (
-        <ProjectsContext.Provider value={{ projects, setProjects, searchProject, setSearchProject, selectProject, 
-        setSelectProject, searchProjectsByTitle, selectProjectsByMultipleCriteria}}>
+        <ProjectsContext.Provider value={{ projects, setProjects, searchProject, setSearchProject, selectedTypes,
+          setSelectedTypes, selectedEmploymentTypes,setSelectedEmploymentTypes, searchProjectsByTitle, 
+          selectProjectsByMultipleCriteria}}>
             {children}
         </ProjectsContext.Provider>
     );

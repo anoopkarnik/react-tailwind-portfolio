@@ -4,26 +4,34 @@ import { ProjectsContext } from '../context/ProjectsContext';
 import ProjectSingle from '../components/project/ProjectSingle';
 
 const Project = () => {
-    const {projects, setProjects, searchProject, setSearchProject, selectProject, 
-    setSelectProject, searchProjectsByTitle, selectProjectsByMultipleCriteria} = useContext(ProjectsContext);
-    const selectTypes = ['Software','Office','Fledgling Software','Office'];
+    const {projects, setProjects, searchProject, setSearchProject, selectedTypes,
+      setSelectedTypes, selectedEmploymentTypes,setSelectedEmploymentTypes, searchProjectsByTitle, 
+      selectProjectsByMultipleCriteria} = useContext(ProjectsContext);
+    const selectTypes = ['Software','Office','Fledgling Software'];
     const selectEmploymentTypes = ['Internship','Part Time','Full Time','Postgraduate','Self Employed']
 
     const getCurrentCriteria = () => {
       let criteria = {};
-      if (selectProject) criteria.Type = selectProject;
-      // Add more criteria as needed
+      criteria.Type = selectedTypes;
+      criteria.EmploymentType = selectedEmploymentTypes;
       return criteria;
     };
 
     const displayedProjects = () => {
+      let filteredProjects = projects;
+
+      // Apply filters based on dropdown selections first
       const criteria = getCurrentCriteria();
-      if (Object.keys(criteria).length > 0) {
-        return selectProjectsByMultipleCriteria(projects, criteria);
-      } else if (searchProject) {
-        return searchProjectsByTitle(projects, searchProject);
+      if (criteria.Type.length > 0 || criteria.EmploymentType.length > 0) {
+        filteredProjects = selectProjectsByMultipleCriteria(filteredProjects, criteria);
       }
-      return projects;
+    
+      // Then, apply text search on the already filtered projects
+      if (searchProject) {
+        filteredProjects = searchProjectsByTitle(filteredProjects, searchProject);
+      }
+    
+      return filteredProjects;
     };
 
   return ( 
@@ -45,30 +53,36 @@ const Project = () => {
               rounded-lg text-sm sm:text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
               id="name"	name="name"	type="search"	required=""	placeholder="Search Projects"	aria-label="Name"/>
             </div>
-            <select onChange={(e) => {setSelectProject(e.target.value);}} className="font-general-medium px-4 sm:px-6 py-2 
-            border dark:border-secondary-dark rounded-lg text-sm sm:text-md dark:font-medium bg-secondary-light
-            dark:bg-ternary-dark text-primary-dark dark:text-ternary-light">
-                <option value={setSelectProject} className="text-sm sm:text-md">
-                  All Projects
-                </option>
-                {selectEmploymentTypes.map((option) => (
-                    <option className="text-normal sm:text-md" key={option}>
-                      {option}
+            <div>
+              <span className="mx-4">
+                <select onChange={(e) => {setSelectedEmploymentTypes(e.target.value);}} className="font-general-medium px-4 sm:px-6 py-2 
+                border dark:border-secondary-dark rounded-lg text-sm sm:text-md dark:font-medium bg-secondary-light
+                dark:bg-ternary-dark text-primary-dark dark:text-ternary-light">
+                    <option value="" className="text-sm sm:text-md">
+                      All Projects
                     </option>
-                ))}
-            </select>
-            <select onChange={(e) => {setSelectProject(e.target.value);}} className="font-general-medium px-4 sm:px-6 py-2 
-            border dark:border-secondary-dark rounded-lg text-sm sm:text-md dark:font-medium bg-secondary-light
-            dark:bg-ternary-dark text-primary-dark dark:text-ternary-light">
-                <option value={setSelectProject} className="text-sm sm:text-md">
-                  All Projects
-                </option>
-                {selectTypes.map((option) => (
-                    <option className="text-normal sm:text-md" key={option}>
-                      {option}
+                    {selectEmploymentTypes.map((option) => (
+                        <option className="text-normal sm:text-md" key={option} value={option}>
+                          {option}
+                        </option>
+                    ))}
+                </select>
+              </span>
+              <span>
+                <select onChange={(e) => {setSelectedTypes(e.target.value);}} className="font-general-medium px-4 sm:px-6 py-2 
+                border dark:border-secondary-dark rounded-lg text-sm sm:text-md dark:font-medium bg-secondary-light
+                dark:bg-ternary-dark text-primary-dark dark:text-ternary-light">
+                    <option value="" className="text-sm sm:text-md">
+                      All Projects
                     </option>
-                ))}
-            </select>
+                    {selectTypes.map((option) => (
+                        <option className="text-normal sm:text-md" key={option} value={option}>
+                          {option}
+                        </option>
+                    ))}
+                </select>
+              </span>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 sm:gap-10">
