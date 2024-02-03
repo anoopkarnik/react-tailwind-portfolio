@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion';
 
 const ProjectSingle = ({project}) => {
-    const techs = project 
+    const techs = project
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, delay: 1 }} transition={{ease: 'easeInOut', duration: 0.7, delay: 0.15,}}>
         <div className="rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark">
@@ -17,7 +17,7 @@ const ProjectSingle = ({project}) => {
                 <p className="font-general-medium text-lg md:text-xl text-ternary-dark dark:text-ternary-light mb-2">
                     {project.Name}
                 </p>
-                  <img src={project.Images[0]} alt="Description" />
+                  <img src={project.Images.length>0?project.Images[0]:'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'} alt="No Image Available" />
 
                 <div className="text-lg text-ternary-dark dark:text-ternary-light">
                    {
