@@ -22,7 +22,7 @@ export default function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/resume" element={<Resume />} />
-                  <Route path="/project" element={<Project />} />
+                  <Route path="/project" element={<Project mainPage={false} />} />
                 </Routes>
               </Suspense>
               <AppFooter />

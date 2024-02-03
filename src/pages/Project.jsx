@@ -1,14 +1,16 @@
-import React,{useContext} from 'react'
+import React,{useContext,useState} from 'react'
 import { FiSearch } from 'react-icons/fi';
 import { ProjectsContext } from '../context/ProjectsContext';
 import ProjectSingle from '../components/project/ProjectSingle';
 
-const Project = () => {
+const Project = (props) => {
     const {projects, setProjects, searchProject, setSearchProject, selectedTypes,
       setSelectedTypes, selectedEmploymentTypes,setSelectedEmploymentTypes, searchProjectsByTitle, 
       selectProjectsByMultipleCriteria} = useContext(ProjectsContext);
-    const selectTypes = ['Software','Office','Fledgling Software'];
+    const selectTypes = ['Data Science','Data Engineering','Full Stack','Frontend','Backend',
+    'AI','DevOps','Electronics','Mechanical','Content Creation','Marketing'];
     const selectEmploymentTypes = ['Internship','Part Time','Full Time','Postgraduate','Self Employed']
+    const [visibleProjects, setVisibleProjects] = useState(6);
 
     const getCurrentCriteria = () => {
       let criteria = {};
@@ -30,8 +32,14 @@ const Project = () => {
       if (searchProject) {
         filteredProjects = searchProjectsByTitle(filteredProjects, searchProject);
       }
-    
+      if (props.mainPage){
+        return filteredProjects.slice(0,visibleProjects);
+      }
       return filteredProjects;
+    };
+
+    const handleShowMoreProjects = () => {
+      setVisibleProjects((prevVisibleProjects) => prevVisibleProjects + 6); // Show 6 more projects
     };
 
   return ( 
@@ -90,6 +98,13 @@ const Project = () => {
             <ProjectSingle project={project} />
           ))}
         </div>
+        {props.mainPage && visibleProjects < projects.length && (
+            <div className="text-center mt-6">
+                <button onClick={handleShowMoreProjects} className="px-6 py-2 rounded-lg bg-primary-light text-ternary-dark dark:bg-ternary-dark dark:text-ternary-light">
+                    Show More
+                </button>
+            </div>
+        )}
       </section>
     </div>
   )
