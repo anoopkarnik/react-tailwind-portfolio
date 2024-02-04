@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion';
+import { FaGithub, FaPlayCircle } from "react-icons/fa";
 
 const ProjectSingle = ({project}) => {
     const techs = project
@@ -13,29 +14,45 @@ const ProjectSingle = ({project}) => {
                   alt="Single Project"
                />
 			</div>
-            <div className="text-center px-4 py-6">
-                <p className="font-general-medium text-lg md:text-xl text-ternary-dark dark:text-ternary-light mb-2">
-                    {project.Name}
-                </p>
-                <div className="text-lg text-ternary-dark dark:text-ternary-light">
-                   {
-                      project.LanguagesUsed?project.LanguagesUsed.map(element => element).join(', ') : ''
-                   }
-                   {
-                      project.LanguagesUsed.length>0?', ':''
-                   }
-                   {
-                      project.FrameworksUsed?project.FrameworksUsed.map(element => element).join(', '): ''
-                   }
-                   {
-                      project.FrameworksUsed.length>0?', ':''
-                   }
-                   {
-                      project.ToolsUsed?project.ToolsUsed.map(element => element).join(', '): ''
-                   } 
-                   
-                </div>
+         <div className='flex items-center justify-between'>
+            <div className='text-center px-4 py-6'>
+               {project.SiteLink?
+               <a href={project.SiteLink} ><FaPlayCircle className="font-general-medium text-lg md:text-3xl 
+               text-ternary-dark dark:text-ternary-light mb-2" /></a>:
+               project.PlaystoreLink?<a href={project.PlaystoreLink}><FaPlayCircle className="font-general-medium text-lg md:text-3xl 
+               text-ternary-dark dark:text-ternary-light mb-2" /></a>:null}
             </div>
+            <div className="text-center px-4 py-6">
+               <p className="font-general-medium text-lg md:text-xl text-ternary-dark dark:text-ternary-light mb-2">
+                     {project.Name}
+               </p>
+               <div className="text-lg text-ternary-dark dark:text-ternary-light">
+                     {
+                        project.LanguagesUsed?project.LanguagesUsed.map(element => element).join(', ') : ''
+                     }
+                     {
+                        project.LanguagesUsed.length>0?', ':''
+                     }
+                     {
+                        project.FrameworksUsed?project.FrameworksUsed.map(element => element).join(', '): ''
+                     }
+                     {
+                        project.FrameworksUsed.length>0?', ':''
+                     }
+                     {
+                        project.ToolsUsed?project.ToolsUsed.map(element => element).join(', '): ''
+                     } 
+                     
+                  </div>
+            </div>
+            {console.log(project.GithubLink)}
+            <div className='text-center px-4 py-6'>
+               {project.GithubLink?
+               <a href={project.GithubLink}>
+                  <FaGithub className="font-general-medium text-lg md:text-3xl 
+                  text-ternary-dark dark:text-ternary-light mb-2"/></a>:null}
+            </div>
+         </div>
 		</div>
     </motion.div>
   )
