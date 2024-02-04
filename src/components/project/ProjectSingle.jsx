@@ -1,13 +1,24 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { motion } from 'framer-motion';
 import { FaGithub, FaPlayCircle } from "react-icons/fa";
+import ProjectDescription from './ProjectDescription'
 
 const ProjectSingle = ({project}) => {
-    const techs = project
+    const [showDescription, setShowDescription] = useState(false);
+
+    const openDescription = () => {
+      setShowDescription(true);
+    };
+    
+    // Function to close the description
+    const closeDescription = () => {
+      setShowDescription(false);
+    };
+
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, delay: 1 }} transition={{ease: 'easeInOut', duration: 0.7, delay: 0.15,}}>
-        <div className="rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark">
-			   <div className="w-full h-48 flex justify-center items-center overflow-hidden">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, delay: 2 }} transition={{ease: 'easeInOut', duration: 0.7, delay: 0.15,}}>
+      <div className="rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark">
+         <div className="w-full h-48 flex justify-center items-center overflow-hidden" onClick={openDescription}>
                <img
                   src={project.Images.length>0?project.Images[0]:'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'}
                   className="rounded-t-xl border-none"
@@ -45,7 +56,6 @@ const ProjectSingle = ({project}) => {
                      
                   </div>
             </div>
-            {console.log(project.GithubLink)}
             <div className='text-center px-4 py-6'>
                {project.GithubLink?
                <a href={project.GithubLink}>
@@ -54,6 +64,7 @@ const ProjectSingle = ({project}) => {
             </div>
          </div>
 		</div>
+      {showDescription && <ProjectDescription project={project} onClose={closeDescription} />}
     </motion.div>
   )
 }
