@@ -21,19 +21,21 @@ const Resume = () => {
         setNumPages(numPages);
     }
     return (
-        <div className="container mx-auto p-4">
-            <div className="flex my-5 justify-center items-center sm:block">
-                <a
-                    download="AnoopKarnik.pdf"
-                    href={resumeLink}
-                    className="font-general-medium flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 text-gray-500 hover:text-white duration-500"
-                    aria-label="Download Resume"
-                >
-                <FiArrowDownCircle className="mr-2 sm:mr-3 h-5 w-5 sn:w-6 sm:h-6 duration-100"></FiArrowDownCircle>
-                <span className="text-sm sm:text-lg font-general-medium duration-100">
-                    Download CV
-                </span>
-                </a>
+        <div className="flex flex-col container mx-auto p-4">
+            <div className="flex justify-center items-center mb-5">
+                <div>
+                    <a
+                        download="AnoopKarnik.pdf"
+                        href={resumeLink}
+                        className="font-general-medium flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 text-gray-500 hover:text-white duration-500"
+                        aria-label="Download Resume"
+                    >
+                    <FiArrowDownCircle className="mr-2 sm:mr-3 h-5 w-5 sn:w-6 sm:h-6 duration-100"></FiArrowDownCircle>
+                    <span className="text-sm sm:text-lg font-general-medium duration-100">
+                        Download CV
+                    </span>
+                    </a>
+                </div>
             </div>
 
             <div className="flex items-center justify-center">
@@ -42,18 +44,20 @@ const Resume = () => {
                     <Viewer fileUrl={resumeLink} plugins={[zoomPluginInstance]} />
                 </Worker>
             </div>
-            <div className="flex flex-col justify-center sm:block">
-                <a
-                    download="AnoopKarnik.pdf"
-                    href={resumeLink}
-                    className="font-general-medium flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 text-gray-500 hover:text-white duration-500"
-                    aria-label="Download Resume"
-                >
+            <div className="flex justify-center items-center mb-5">
+                <div>
+                    <a
+                        download="AnoopKarnik.pdf"
+                        href={resumeLink}
+                        className="font-general-medium flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 text-gray-500 hover:text-white duration-500"
+                        aria-label="Download Resume"
+                    >
                     <FiArrowDownCircle className="mr-2 sm:mr-3 h-5 w-5 sn:w-6 sm:h-6 duration-100"></FiArrowDownCircle>
                     <span className="text-sm sm:text-lg font-general-medium duration-100">
                         Download CV
                     </span>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
   );
