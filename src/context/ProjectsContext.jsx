@@ -11,11 +11,19 @@ export const ProjectsProvider = ({children}) => {
     let seenIds = new Set();
     const [selectedTypes,setSelectedTypes] = useState('');
     const [selectedEmploymentTypes,setSelectedEmploymentTypes] = useState('');
-    const apiGatewayUrl = import.meta.env.VITE_API_GATEWAY_URL;
+    const apiGatewayNotionUrl = import.meta.env.VITE_API_GATEWAY_NOTION_URL;
+    const apiGatewayNotionStreamUrl = import.meta.env.VITE_API_GATEWAY_NOTION_STREAM_URL;
+    
+
+    const [education, setEducation] = useState([]);
+    const [internships, setInternships] = useState([]);
+    const [partTimeWorks , setPartTimeWorks] = useState([]);
+    const [hobbyProjects, setHobbyProjects] = useState([]);
+    const [fullTimeWorks, setFullTimeWorks] = useState([]);
 
     useEffect(() => {
       const fetchData = async () => {
-        const response = await fetch(apiGatewayUrl+'notion_stream/projects', {
+        const response = await fetch(apiGatewayNotionStreamUrl+'projects', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -68,6 +76,28 @@ export const ProjectsProvider = ({children}) => {
     
       fetchData();
     }, []);
+
+    useEffect(() => {
+      const fetchData = async () => {
+          const response = await fetch(apiGatewayNotionStreamUrl+'complete_portfolio', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({'call_type':'sync'}),
+          });
+          // console.log(response);
+          const data = await response.json();
+          setEducation(data.education);
+          setInternships(data.internships);
+          setPartTimeWorks(data.part_time_work);
+          setHobbyProjects(data.self_employed);
+          setFullTimeWorks(data.works);
+
+      };
+      fetchData();
+    },[])
+
   
 
     const searchProjectsByTitle = (projects,searchTerm) => {
@@ -88,7 +118,8 @@ export const ProjectsProvider = ({children}) => {
 
     return (
         <ProjectsContext.Provider value={{ projects, setProjects, searchProject, setSearchProject, selectedTypes,
-          setSelectedTypes, selectedEmploymentTypes,setSelectedEmploymentTypes, searchProjectsByTitle, 
+          setSelectedTypes, education, internships, partTimeWorks,hobbyProjects,fullTimeWorks,
+           selectedEmploymentTypes,setSelectedEmploymentTypes, searchProjectsByTitle, 
           selectProjectsByMultipleCriteria}}>
             {children}
         </ProjectsContext.Provider>

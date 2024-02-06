@@ -17,18 +17,18 @@ export default function App() {
       <AnimatePresence>
         <div className=" bg-secondary-light dark:bg-primary-dark transition duration-300">
           <ProjectsProvider>
-            <Router>
-              <AppHeader/>
-              <Suspense fallback={<div>Loading...</div>}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/resume" element={<Resume />} />
-                  <Route path="/project" element={<Project mainPage={false} />} />
-                  <Route path="/about" element={<AboutMe />} />
-                </Routes>
-              </Suspense>
-              <AppFooter />
-            </Router>
+              <Router>
+                <AppHeader/>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/resume" element={<Resume />} />
+                    <Route path="/project" element={<Project mainPage={false} />} />
+                    <Route path="/about" element={<AboutMe />} />
+                  </Routes>
+                </Suspense>
+                <AppFooter />
+              </Router>
           </ProjectsProvider>
         </div>
       </AnimatePresence>

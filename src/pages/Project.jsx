@@ -5,7 +5,8 @@ import ProjectSingle from '../components/project/ProjectSingle';
 
 const Project = (props) => {
     const {projects, setProjects, searchProject, setSearchProject, selectedTypes,
-      setSelectedTypes, selectedEmploymentTypes,setSelectedEmploymentTypes, searchProjectsByTitle, 
+      setSelectedTypes,education, internships, partTimeWorks,hobbyProjects,fullTimeWorks, selectedEmploymentTypes,
+      setSelectedEmploymentTypes, searchProjectsByTitle, 
       selectProjectsByMultipleCriteria} = useContext(ProjectsContext);
     const selectTypes = ['Data Science','Data Engineering','Full Stack','Frontend','Backend',
     'AI','DevOps','Electronics','Mechanical','Content Creation','Marketing'];
