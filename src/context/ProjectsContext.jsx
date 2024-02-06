@@ -13,13 +13,17 @@ export const ProjectsProvider = ({children}) => {
     const [selectedEmploymentTypes,setSelectedEmploymentTypes] = useState('');
     const apiGatewayNotionUrl = import.meta.env.VITE_API_GATEWAY_NOTION_URL;
     const apiGatewayNotionStreamUrl = import.meta.env.VITE_API_GATEWAY_NOTION_STREAM_URL;
-    
+
 
     const [education, setEducation] = useState([]);
     const [internships, setInternships] = useState([]);
     const [partTimeWorks , setPartTimeWorks] = useState([]);
     const [hobbyProjects, setHobbyProjects] = useState([]);
     const [fullTimeWorks, setFullTimeWorks] = useState([]);
+
+    const [languages, setLanguages] = useState([]);
+    const [frameworks, setFrameworks] = useState([]);
+    const [tools, setTools] = useState([]);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -98,7 +102,22 @@ export const ProjectsProvider = ({children}) => {
       fetchData();
     },[])
 
-  
+    useEffect(() => {
+      const fetchData = async () => {
+          const response = await fetch(apiGatewayNotionStreamUrl+'skills', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({'call_type':'sync'}),
+          });
+          const data = await response.json();
+          setLanguages(data.languages);
+          setFrameworks(data.frameworks);
+          setTools(data.tools);
+      };
+      fetchData();
+    },[]);
 
     const searchProjectsByTitle = (projects,searchTerm) => {
       return projects.filter((item) => {
@@ -118,7 +137,7 @@ export const ProjectsProvider = ({children}) => {
 
     return (
         <ProjectsContext.Provider value={{ projects, setProjects, searchProject, setSearchProject, selectedTypes,
-          setSelectedTypes, education, internships, partTimeWorks,hobbyProjects,fullTimeWorks,
+          setSelectedTypes, education, internships, partTimeWorks,hobbyProjects,fullTimeWorks, languages, frameworks, tools,
            selectedEmploymentTypes,setSelectedEmploymentTypes, searchProjectsByTitle, 
           selectProjectsByMultipleCriteria}}>
             {children}

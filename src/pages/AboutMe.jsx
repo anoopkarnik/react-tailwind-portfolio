@@ -1,22 +1,20 @@
 import React,{ useContext } from 'react'
 import { ProjectsContext } from '../context/ProjectsContext';
 import ExperienceSingle from '../components/about/ExperienceSingle';
+import TechIcon from '../components/reusable/TechIcon';
 
 
 const AboutMe = () => {
     const {projects, setProjects, searchProject, setSearchProject, selectedTypes,
-        setSelectedTypes,education, internships, partTimeWorks,hobbyProjects,fullTimeWorks, selectedEmploymentTypes,
-        setSelectedEmploymentTypes, searchProjectsByTitle, 
+        setSelectedTypes,education, internships, partTimeWorks,hobbyProjects,fullTimeWorks,  languages, frameworks, tools,
+        selectedEmploymentTypes, setSelectedEmploymentTypes, searchProjectsByTitle, 
         selectProjectsByMultipleCriteria} = useContext(ProjectsContext);
     
 
   return (
     <div className='container mx-auto'>
-        <section className="py-5 sm:py-10 mt-5 sm:mt-10">
+        <section >
             <div className="flex flex-col text-center">
-                <h1 className="font-general-medium text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
-                   About Me
-                </h1>
                 <div className='flex flex-col items-center justify-between my-10 '>
                     <div className='flex items-center justify-center border-b border-b-2 border-gray-500 py-10 '>
                         <div className='w-full h-200 mr-20 '>
@@ -39,6 +37,33 @@ const AboutMe = () => {
                             workflow engine, rules engine and machine learning pipelines.
                         </div>
                     </div>
+                    <div className='w-full flex flex-col items-center justify-center border-b border-b-2 border-gray-500 py-10'>
+                        <div className='flex flex-wrap items-center justify-start w-full mb-5 '>
+                            <div className="mr-10 font-general-medium text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
+                                Languages
+                            </div>
+                            {languages && languages.length > 0 && languages.map((item, index) => (
+                                <TechIcon key={index} item={item}/>
+                                ))}
+                                {console.log(languages)}
+                        </div>
+                        <div className='flex flex-wrap items-center justify-start w-full mb-5'>
+                            <div className="mr-10 font-general-medium text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
+                                Frameworks
+                            </div>
+                            {frameworks && frameworks.length > 0 && frameworks.map((item, index) => (
+                                <TechIcon key={index} item={item}/>
+                                ))}
+                        </div>
+                        <div className='flex flex-wrap items-center justify-start w-full '>
+                            <div className="mr-10  font-general-medium text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
+                                Tools
+                            </div>
+                            {tools && tools.length > 0 && tools.map((item, index) => (
+                                <TechIcon key={index} item={item}/>
+                                ))}
+                        </div>
+                    </div>
                     <div className=' mt-10 flex flex-col w-full items-center justify-center'>
                         <div className='flex w-full border-b border-b-2 border-gray-500 py-10 '>
                             <div className='flex flex-col items-start w-1/2 p-4 border-r border-r-2 border-gray-500 '>
@@ -46,7 +71,7 @@ const AboutMe = () => {
                                 <div className='flex flex-col w-full items-center'>
                                     {education && education.length > 0 && education.map((item, index) => (
                                         <ExperienceSingle key={index} item={item}/>
-                                    ))}
+                                    ))}+
                                 </div>
                             </div>
                             <div className='flex flex-col items-start w-1/2 p-4 ml-10'>
