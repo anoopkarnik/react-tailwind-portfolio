@@ -52,7 +52,7 @@ const Project = (props) => {
           </p>
         </div>
         <div className="mt-10 sm:mt-16">
-          <div className="flex justify-between border-b border-primary-light dark:border-secondary-dark pb-3 gap-3">
+          <div className="flex justify-between border-b border-primary-light dark:border-secondary-dark pb-3 gap-3 flex-wrap align-content-end">
             <div className="flex justify-between gap-2">
               <span	className="hidden sm:block bg-primary-light dark:bg-ternary-dark p-2.5 shadow-sm rounded-xl cursor-pointer">
                 <FiSearch className="text-ternary-dark dark:text-ternary-light w-5 h-5"></FiSearch>
