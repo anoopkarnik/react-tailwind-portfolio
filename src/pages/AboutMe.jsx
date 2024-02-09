@@ -97,7 +97,7 @@ const AboutMe = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex w-full border-b border-b-2 border-gray-500 py-10 '>
+                        {/* <div className='flex w-full border-b border-b-2 border-gray-500 py-10 '>
                             <div className='flex flex-col items-start w-1/2  p-4 border-r border-r-2 border-gray-500'>
                                 <h1 className="font-general-medium text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">Self Employed</h1>
                                 <div className='flex flex-col w-full items-center'>
@@ -112,7 +112,7 @@ const AboutMe = () => {
 ?
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
