@@ -10,7 +10,7 @@ const Project = (props) => {
       selectProjectsByMultipleCriteria} = useContext(ProjectsContext);
     const selectTypes = ['Data Science','Data Engineering','Full Stack','Frontend','Backend',
     'AI','DevOps','Electronics','Mechanical','Content Creation','Marketing'];
-    const selectEmploymentTypes = ['Internship','Part Time','Full Time','Postgraduate','Self Employed']
+    const selectEmploymentTypes = ['Internship','Part Time','Full Time','Postgraduate','Practise Projects','Hobby Projects']
     const [visibleProjects, setVisibleProjects] = useState(6);
 
     const getCurrentCriteria = () => {

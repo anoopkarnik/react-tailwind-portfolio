@@ -36,7 +36,6 @@ const ProjectDescription = ({ project, onClose }) => {
       <div className="w-4/5 max-w-4/5 bg-secondary-light dark:bg-ternary-dark shadow-lg overflow-auto"
            style={{ height: '100vh' }}>
         <div className="p-4">
-          <button onClick={onClose} className="text-lg font-bold text-ternary-dark dark:text-ternary-light">[-{'>'}]</button>
           <h2 className="text-2xl font-bold text-ternary-dark dark:text-ternary-light mb-4">{project.Name}</h2>
           <div className="flex flex-col gap-4">
             {Object.entries(project)
