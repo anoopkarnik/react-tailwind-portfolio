@@ -454,6 +454,15 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-left: 8rem;
   }
 }
+
+@media (min-width: 1900px) {
+
+  .container {
+    max-width: 1900px;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
 .fixed {
   position: fixed;
 }

@@ -15,15 +15,11 @@ const AboutMe = () => {
     <div className='container mx-auto'>
         <section >
             <div className="flex flex-col text-center">
-                <div className='flex flex-col items-center justify-between my-10 '>
-                    <div className='flex items-center justify-center border-b border-b-2 border-gray-500 py-10 '>
-                        <div className='w-full h-200 mr-20 '>
-                            <img 
-                            src="https://raw.githubusercontent.com/anoopkarnik/react-tailwind-portfolio/main/src/assets/images/profile_pic.png" 
-                            alt="Not Found" 
-                            className="scale-150"
-                            />
-                        </div>
+                <div className='flex flex-col items-center justify-between my-10 py-10 border-t-2 border-gray-500 '>
+                    <div className=' font-general-medium text-4xl sm:text-6xl mb-1 text-ternary-dark dark:text-ternary-light'>
+                        About Me
+                    </div>
+                    <div className='flex items-center justify-center border-b-2 border-gray-500 py-10 '>
                         <div className='font-general-medium text-sm sm:text-2xl mb-1 text-ternary-dark dark:text-ternary-light'> 
                             I am a driven individual with the ability to learn and adapt to any situation.
                             I started in college as a Mechanical Engineer, where I dabbed in frontend development, designing, 
