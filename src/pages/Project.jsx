@@ -44,53 +44,51 @@ const Project = (props) => {
     };
 
   return ( 
-    <div className='container mx-auto'>
-      <section className="py-5 sm:py-10 mt-5 sm:mt-10">
+    <div className='w-full container mx-auto'>
+      <section className="py-5 sm:py-10">
         <div className="text-center">
           <p className="font-general-medium text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
             Projects portfolio
           </p>
         </div>
-        <div className="mt-10 sm:mt-16">
-          <div className="flex justify-between border-b border-primary-light dark:border-secondary-dark pb-3 gap-3 flex-wrap align-content-end">
-            <div className="flex justify-between gap-2">
-              <span	className="hidden sm:block bg-primary-light dark:bg-ternary-dark p-2.5 shadow-sm rounded-xl cursor-pointer">
-                <FiSearch className="text-ternary-dark dark:text-ternary-light w-5 h-5"></FiSearch>
-              </span>
-              <input onChange={(e) => {setSearchProject(e.target.value);}}
-              className="font-general-medium pl-3 pr-1 sm:px-4 py-2 border border-gray-200 dark:border-secondary-dark
-              rounded-lg text-sm sm:text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
-              id="name"	name="name"	type="search"	required=""	placeholder="Search Projects"	aria-label="Name"/>
+        <div className="w-full flex justify-between border-b border-primary-light dark:border-secondary-dark gap-3 flex-wrap items-center">
+          <div className="w-[49%] flex justify-start gap-2tem flex-nowrap">
+            <span	className="hidden sm:block bg-primary-light dark:bg-ternary-dark p-2.5 shadow-sm rounded-xl cursor-pointer">
+              <FiSearch className="text-ternary-dark dark:text-ternary-light "></FiSearch>
+            </span>
+            <input onChange={(e) => {setSearchProject(e.target.value);}}
+            className="font-general-medium pl-3 pr-1 sm:px-4 py-2 border border-gray-200 dark:border-secondary-dark
+            rounded-lg text-sm sm:text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
+            id="name"	name="name"	type="search"	required=""	placeholder="Search Projects"	aria-label="Name"/>
+          </div>
+          <div className='w-[50%] gap-2 flex justify-end items-center flex-wrap'>
+            <div>
+              <select onChange={(e) => {setSelectedEmploymentTypes(e.target.value);}} className="font-general-medium px-4 sm:px-6 py-2 
+              border dark:border-secondary-dark rounded-lg text-sm sm:text-md dark:font-medium bg-secondary-light
+              dark:bg-ternary-dark text-primary-dark dark:text-ternary-light">
+                  <option value="" className="text-sm sm:text-md">
+                    Select Employment Type
+                  </option>
+                  {selectEmploymentTypes.map((option) => (
+                      <option className="text-normal sm:text-md" key={option} value={option}>
+                        {option}
+                      </option>
+                  ))}
+              </select>
             </div>
             <div>
-              <span className="mx-4">
-                <select onChange={(e) => {setSelectedEmploymentTypes(e.target.value);}} className="font-general-medium px-4 sm:px-6 py-2 
-                border dark:border-secondary-dark rounded-lg text-sm sm:text-md dark:font-medium bg-secondary-light
-                dark:bg-ternary-dark text-primary-dark dark:text-ternary-light">
-                    <option value="" className="text-sm sm:text-md">
-                      Select Employment Type
-                    </option>
-                    {selectEmploymentTypes.map((option) => (
-                        <option className="text-normal sm:text-md" key={option} value={option}>
-                          {option}
-                        </option>
-                    ))}
-                </select>
-              </span>
-              <span>
-                <select onChange={(e) => {setSelectedTypes(e.target.value);}} className="font-general-medium px-4 sm:px-6 py-2 
-                border dark:border-secondary-dark rounded-lg text-sm sm:text-md dark:font-medium bg-secondary-light
-                dark:bg-ternary-dark text-primary-dark dark:text-ternary-light">
-                    <option value="" className="text-sm sm:text-md">
-                      Select Project Type
-                    </option>
-                    {selectTypes.map((option) => (
-                        <option className="text-normal sm:text-md" key={option} value={option}>
-                          {option}
-                        </option>
-                    ))}
-                </select>
-              </span>
+              <select onChange={(e) => {setSelectedTypes(e.target.value);}} className="font-general-medium px-4 sm:px-6 py-2 
+              border dark:border-secondary-dark rounded-lg text-sm sm:text-md dark:font-medium bg-secondary-light
+              dark:bg-ternary-dark text-primary-dark dark:text-ternary-light">
+                  <option value="" className="text-sm sm:text-md">
+                    Select Project Type
+                  </option>
+                  {selectTypes.map((option) => (
+                      <option className="text-normal sm:text-md" key={option} value={option}>
+                        {option}
+                      </option>
+                  ))}
+              </select>
             </div>
           </div>
         </div>

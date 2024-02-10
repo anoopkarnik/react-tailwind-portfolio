@@ -60,8 +60,6 @@ const TechIcon = ({ key,item }) => {
         "Camunda Workflow Engine": <div>CWE</div>,
         "Anki": <div>AK</div>,
         "ECS": <SiAmazonecs/>,
-        "Github": <SiGithub/>,
-
         // Add more mappings here...
       };
       

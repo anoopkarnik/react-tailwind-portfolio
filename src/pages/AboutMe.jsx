@@ -41,7 +41,6 @@ const AboutMe = () => {
                             {languages && languages.length > 0 && languages.map((item, index) => (
                                 <TechIcon key={index} item={item}/>
                                 ))}
-                                {console.log(languages)}
                         </div>
                         <div className='flex flex-wrap items-center justify-start w-full mb-5'>
                             <div className="mr-10 font-general-medium text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
