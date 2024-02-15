@@ -6,6 +6,7 @@ export const ProjectsContext = createContext()
 export const ProjectsProvider = ({children}) => {
 
     const [projects, setProjects] = useState([]);
+    const [projectsByType, setProjectsByType] = useState({});
     const [searchProject, setSearchProject] = useState('');
 	  const [selectProject, setSelectProject] = useState('');
     let seenIds = new Set();
@@ -54,7 +55,7 @@ export const ProjectsProvider = ({children}) => {
                 const json = JSON.parse(chunk);
                 if (!seenIds.has(json.id)) {
                   seenIds.add(json.id);
-                  setProjects(prevProjects => [...prevProjects, json]);
+                  setProjects(prevProjects => [...prevProjects, json])
                 }
               } catch (error) {
                 console.error('Error parsing JSON chunk:', error);
@@ -73,6 +74,8 @@ export const ProjectsProvider = ({children}) => {
               console.error('Error parsing JSON from remaining buffer:', error);
             }
           }
+          setProjectsByType(projects.reduce((acc,cur) => {(acc[cur.Type] = acc[cur.Type] || []).push(cur); return acc;
+          },{}))
         } catch (error) {
           console.error('Error reading stream:', error);
         }
@@ -139,7 +142,7 @@ export const ProjectsProvider = ({children}) => {
         <ProjectsContext.Provider value={{ projects, setProjects, searchProject, setSearchProject, selectedTypes,
           setSelectedTypes, education, internships, partTimeWorks,hobbyProjects,fullTimeWorks, languages, frameworks, tools,
            selectedEmploymentTypes,setSelectedEmploymentTypes, searchProjectsByTitle, 
-          selectProjectsByMultipleCriteria}}>
+          selectProjectsByMultipleCriteria, projectsByType, setProjectsByType}}>
             {children}
         </ProjectsContext.Provider>
     );
