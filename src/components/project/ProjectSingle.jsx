@@ -27,14 +27,16 @@ const ProjectSingle = ({project}) => {
                />
 			</div>
          <div className='flex items-center justify-between'>
-            <div className='text-center '>
+            <div className='text-center w-[20%] '>
                {project.SiteLink?
-               <a href={project.SiteLink} ><FaPlayCircle className="font-general-medium text-lg md:text-xl 
-               text-ternary-dark dark:text-ternary-light mb-2" /></a>:
-               project.PlaystoreLink?<a href={project.PlaystoreLink}><FaPlayCircle className="font-general-medium text-lg md:text-xl 
-               text-ternary-dark dark:text-ternary-light mb-2" /></a>:null}
+               <a href={project.SiteLink} >
+                  <FaPlayCircle className="font-general-medium text-lg md:text-xl 
+                  text-ternary-dark dark:text-ternary-light mb-2" /></a>:
+                  project.PlaystoreLink?<a href={project.PlaystoreLink}>
+                     <FaPlayCircle className="font-general-medium text-lg md:text-xl 
+                     text-ternary-dark dark:text-ternary-light mb-2" /></a>:null}
             </div>
-            <div className="text-center">
+            <div className="text-center w-[60%] py-2">
                <p className="font-general-medium text-md md:text-md text-ternary-dark dark:text-ternary-light mb-2">
                      {project.Name}
                </p>
@@ -57,7 +59,7 @@ const ProjectSingle = ({project}) => {
                      
                   </div>
             </div>
-            <div className='text-center px-4 py-6'>
+            <div className='text-center px-4 py-6 w-[20%]'>
                {project.GithubLink?
                <a href={project.GithubLink}>
                   <FaGithub className="font-general-medium text-lg md:text-3xl 
