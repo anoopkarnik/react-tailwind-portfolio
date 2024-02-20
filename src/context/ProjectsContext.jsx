@@ -25,6 +25,7 @@ export const ProjectsProvider = ({children}) => {
     const [languages, setLanguages] = useState([]);
     const [frameworks, setFrameworks] = useState([]);
     const [tools, setTools] = useState([]);
+    const [typeDetails, setTypeDetails] = useState({});
 
     useEffect(() => {
       const fetchData = async () => {
@@ -74,8 +75,24 @@ export const ProjectsProvider = ({children}) => {
               console.error('Error parsing JSON from remaining buffer:', error);
             }
           }
-          setProjectsByType(projects.reduce((acc,cur) => {(acc[cur.Type] = acc[cur.Type] || []).push(cur); return acc;
-          },{}))
+          setProjectsByType(projects.reduce((acc,cur) => {(acc[cur.Type] = acc[cur.Type] || []).push(cur); return acc;},{}))
+          setTypeDetails(projects.reduce((acc, project) => {
+            // Initialize the type if it doesn't exist
+            if (!acc[project.Type]) {
+              acc[project.Type] = {
+                languages: new Set(),
+                frameworks: new Set(),
+                tools: new Set(),
+              };
+            }
+          
+            // Add the current project's details to the sets
+            acc[project.Type].languages.add(project.LanguagesUsed);
+            acc[project.Type].frameworks.add(project.FrameworksUsed);
+            acc[project.Type].tools.add(project.ToolsUsed);
+          
+            return acc;
+          }, {}));
         } catch (error) {
           console.error('Error reading stream:', error);
         }
@@ -142,7 +159,7 @@ export const ProjectsProvider = ({children}) => {
         <ProjectsContext.Provider value={{ projects, setProjects, searchProject, setSearchProject, selectedTypes,
           setSelectedTypes, education, internships, partTimeWorks,hobbyProjects,fullTimeWorks, languages, frameworks, tools,
            selectedEmploymentTypes,setSelectedEmploymentTypes, searchProjectsByTitle, 
-          selectProjectsByMultipleCriteria, projectsByType, setProjectsByType}}>
+          selectProjectsByMultipleCriteria, projectsByType, setProjectsByType, typeDetails}}>
             {children}
         </ProjectsContext.Provider>
     );

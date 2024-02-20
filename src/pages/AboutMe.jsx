@@ -15,7 +15,7 @@ const AboutMe = () => {
     <div className='container mx-auto'>
         <section >
             <div className="flex flex-col text-center">
-                <div className='flex flex-col items-center justify-between my-10 py-10 border-t-2 border-gray-500 '>
+                <div className='flex flex-col items-center justify-between py-4 border-gray-500 '>
                     <div className=' font-general-medium text-4xl sm:text-6xl mb-1 text-ternary-dark dark:text-ternary-light'>
                         About Me
                     </div>
@@ -33,7 +33,7 @@ const AboutMe = () => {
                             workflow engine, rules engine and machine learning pipelines.
                         </div>
                     </div>
-                    <div className='w-full flex flex-col items-center justify-center border-b border-b-2 border-gray-500 py-10'>
+                    {/* <div className='w-full flex flex-col items-center justify-center border-b border-b-2 border-gray-500 py-10'>
                         <div className='flex flex-wrap items-center justify-start w-full mb-5 '>
                             <div className="mr-10 font-general-medium text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
                                 Languages
@@ -58,7 +58,7 @@ const AboutMe = () => {
                                 <TechIcon key={index} item={item}/>
                                 ))}
                         </div>
-                    </div>
+                    </div> */}
                     <div className=' mt-10 flex flex-col w-full items-center justify-center'>
                         <div className='flex w-full border-b border-b-2 border-gray-500 py-10 '>
                             <div className='flex flex-col items-start w-1/2 p-4 border-r border-r-2 border-gray-500 '>

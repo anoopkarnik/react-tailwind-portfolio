@@ -75,7 +75,7 @@ const TechIcon = ({ key,item }) => {
   };
 
   return (
-    <div className='flex align-items justify-start mr-3 font-general-medium text-xl sm:text-3xl mb-1 
+    <div className='flex items-center justify-center mr-3 font-general-medium text-xl sm:text-3xl mb-1 
     text-ternary-dark dark:text-ternary-light' title={item}>
       {renderIcon(item)}
     </div>
