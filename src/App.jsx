@@ -1,36 +1,34 @@
 import { AnimatePresence } from 'framer-motion';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './assets/css/index.css';
-import {lazy, Suspense} from 'react';
 
-import { ProjectsProvider } from './context/ProjectsContext'
-import LeftSideBar from './components/shared/LeftSideBar';
+import {lazy, Suspense, useEffect} from 'react';
+import LeftSideBar from './Layout/LeftSideBar';
+import { usePortfolio } from './hooks/usePortfolio';
+import { useProjects } from './hooks/useProjects';
+import { useSkills } from './hooks/useSkills';
 
 const Resume = lazy(() => import('./pages/Resume'));
 const AboutMe = lazy(() => import('./pages/AboutMe'));
-const Project = lazy(() => import('./pages/Project'));
+const Project = lazy(() => import('./pages/Project/Project'));
+const Experience = lazy(() => import('./pages/Experience/Experience'));
 
 
 export default function App() {
+
+      usePortfolio();
+      useProjects();
+      useSkills();
+
     return (
       <AnimatePresence>
-        <div className="w-full bg-secondary-light dark:bg-primary-dark transition duration-300">
-          <ProjectsProvider>
-                <div className='flex overflow'> 
-                  <div className="flex-col w-[20%] fixed overflow-auto items-center justify-centerh-auto top-1/2
-                  left-0 -translate-y-1/2 ">
-                      <LeftSideBar/>
-                  </div>
-                  <div className='flex-grow ml-[20%]'>
-
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <Project mainPage={true} />
-                      <AboutMe/>
-                      <Resume/>
-                    </Suspense>
-                  </div>
-                </div>
-          </ProjectsProvider>
+        <div className="w-full flex flex-col overflow-auto bg-primary-light dark:bg-primary-dark transition duration-300">
+            <LeftSideBar/>
+            <Suspense fallback={<div>Loading...</div>}>
+                <AboutMe/>
+                <Project mainPage={true} />
+                <Experience/>
+                <Resume/>
+            </Suspense>
         </div>
       </AnimatePresence>
     )

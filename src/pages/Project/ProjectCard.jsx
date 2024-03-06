@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaPlayCircle } from "react-icons/fa";
 import ProjectDescription from './ProjectDescription'
 
-const ProjectSingle = ({project}) => {
+const ProjectCard = ({project}) => {
     const [showDescription, setShowDescription] = useState(false);
 
     const openDescription = () => {
@@ -16,17 +16,17 @@ const ProjectSingle = ({project}) => {
     };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, delay: 2 }} transition={{ease: 'easeInOut', duration: 0.7, delay: 0.15,}}>
-      <div className="rounded-xl shadow-lg hover:shadow-xl cursor-pointer sm:mb-0 bg-secondary-light dark:bg-ternary-dark
-      ">
-         <div className="h-[150px] justify-center items-center overflow-hidden object-cover" onClick={openDescription}>
-               <img
-                  src={project.Images.length>0?project.Images[0]:'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'}
-                  className="rounded-t-xl border-none"
-                  alt="Single Project"
-               />
-			</div>
-         <div className='flex items-center justify-between'>
+    <div // Set a fixed width and minimum height for the card
+      className="h-[300px] w-full rounded-xl shadow-lg hover:shadow-xl cursor-pointer sm:mb-0
+       bg-secondary-light flex flex-col flex-shrink-0 "
+   >  
+         <img
+            src={project.Images.length>0?project.Images[0]:'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'}
+            className="block w-full h-[70%] object-cover  rounded-t-xl"
+            alt="Single Project"
+            onClick={openDescription}
+         />
+         <div className='flex items-center justify-between flex-shrink-0'>
             <div className='text-center w-[20%] '>
                {project.SiteLink?
                <a href={project.SiteLink} >
@@ -37,7 +37,7 @@ const ProjectSingle = ({project}) => {
                      text-ternary-dark dark:text-ternary-light mb-2" /></a>:null}
             </div>
             <div className="text-center w-[60%] py-2">
-               <p className="font-general-medium text-md md:text-md text-ternary-dark dark:text-ternary-light mb-2">
+               <p className="font-general-medium font-bold text-md md:text-md text-ternary-dark dark:text-ternary-light mb-2">
                      {project.Name}
                </p>
                <div className="text-md text-ternary-dark dark:text-ternary-light">
@@ -66,10 +66,9 @@ const ProjectSingle = ({project}) => {
                   text-ternary-dark dark:text-ternary-light mb-2"/></a>:null}
             </div>
          </div>
-		</div>
       {showDescription && <ProjectDescription project={project} onClose={closeDescription} />}
-    </motion.div>
+    </div>
   )
 }
 
-export default ProjectSingle
+export default ProjectCard
